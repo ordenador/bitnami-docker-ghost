@@ -241,10 +241,16 @@ mysql_execute_print_output() {
     [[ "${#extra_opts[@]}" -gt 0 ]] && args+=("${extra_opts[@]}")
 
     # Obtain the command specified via stdin
-    local mysql_cmd
-    mysql_cmd="$(</dev/stdin)"
-    debug "Executing SQL command:\n$mysql_cmd"
-    "$DB_BIN_DIR/mysql" "${args[@]}" <<<"$mysql_cmd"
+    if [[ "${BITNAMI_DEBUG:-false}" = true ]]; then
+        local mysql_cmd
+        mysql_cmd="$(</dev/stdin)"
+        debug "Executing SQL command:\n$mysql_cmd"
+        "$DB_BIN_DIR/mysql" "${args[@]}" <<<"$mysql_cmd"
+    else
+        # Do not store the command(s) as a variable, to avoid issues when importing large files
+        # https://github.com/bitnami/bitnami-docker-mariadb/issues/251
+        "$DB_BIN_DIR/mysql" "${args[@]}"
+    fi
 }
 
 ########################
@@ -929,12 +935,17 @@ mysql_conf_set() {
     local -r key="${1:?key missing}"
     local -r value="${2:?value missing}"
     read -r -a sections <<<"${3:-mysqld}"
-    local -r file="${4:-"$DB_CONF_FILE"}"
+    local -r ignore_inline_comments="${4:-no}"
+    local -r file="${5:-"$DB_CONF_FILE"}"
     info "Setting ${key} option"
     debug "Setting ${key} to '${value}' in ${DB_FLAVOR} configuration file ${file}"
     # Check if the configuration exists in the file
     for section in "${sections[@]}"; do
-        ini-file set --section "$section" --key "$key" --value "$value" "$file"
+        if is_boolean_yes "$ignore_inline_comments"; then
+            ini-file set --ignore-inline-comments --section "$section" --key "$key" --value "$value" "$file"
+        else
+            ini-file set --section "$section" --key "$key" --value "$value" "$file"
+        fi
     done
 }
 

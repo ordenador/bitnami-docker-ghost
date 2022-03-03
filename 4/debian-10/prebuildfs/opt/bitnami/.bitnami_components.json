@@ -1,37 +1,37 @@
 {
     "ghost": {
         "arch": "amd64",
-        "digest": "18faeb2b5e6f5a1bec6afe72dd1183f9fbd281eed4c632f4bb92ec64abf9f8e4",
+        "digest": "9f1719c1a5c15ad713e9caeb4dc4eb3d78994830d9b807ca674b3c1412c39502",
         "distro": "debian-10",
         "type": "NAMI",
-        "version": "4.35.0-0"
+        "version": "4.37.0-1"
     },
     "gosu": {
         "arch": "amd64",
-        "digest": "ec62006ece7e0b49c65926e458ba2b71d6d251552118b1378840b1803dbb3d53",
+        "digest": "d6280b6f647a62bf6edc74dc8e526bfff63ddd8067dcb8540843f47203d9ccf1",
         "distro": "debian-10",
         "type": "NAMI",
-        "version": "1.14.0-4"
+        "version": "1.14.0-7"
     },
     "mysql-client": {
         "arch": "amd64",
-        "digest": "4489feca3a65fbd733774d193b02914187451c6edf27855ebc5756e45a9f299e",
+        "digest": "bb0089c26028b568dbe8b8875d39cca3c7835c582dda4fcbdcbed599320c57fe",
         "distro": "debian-10",
         "type": "NAMI",
-        "version": "10.3.32-31"
+        "version": "10.3.34-4"
     },
     "node": {
         "arch": "amd64",
-        "digest": "556a98f936b3c23e05bd6c23cd0cec135238b239b329161580544697bc332053",
+        "digest": "0649af9ad2856d01d574146b62c840d3a330f2e85227a2ae73ec6500737ccccc",
         "distro": "debian-10",
         "type": "NAMI",
-        "version": "14.19.0-0"
+        "version": "14.19.0-4"
     },
     "python": {
         "arch": "amd64",
-        "digest": "48db897c12810ff5f17a323e9b4a0cc2812e673d66f94feb9d90e3abb28e664b",
+        "digest": "3272da2099afdae735a7d3fb199e83f3bd74b44ebf6953e2f9a3dd0ad45091d1",
         "distro": "debian-10",
         "type": "NAMI",
-        "version": "3.8.12-31"
+        "version": "3.8.12-37"
     }
 }
